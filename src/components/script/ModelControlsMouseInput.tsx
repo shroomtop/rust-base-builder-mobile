@@ -9,9 +9,9 @@ import { faArrowRotateRight, faArrowRotateLeft, faArrowUp, faArrowRight, faArrow
 import { useAudioPlayer } from "./AudioPlayer.tsx";
 
 //Component ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-//Component The control panel positioned at the center bottom of the app that serves as a transforming tool for objects via mouse input.
+//Component The control panel positioned at the center bottom of the app that serves as a transforming tool for objects via mouse/touch input.
 //Component It facilitates adjustments to object properties such as position, rotation, elevation and height.
-//Component Users can also switch between distance units and delete either selected or all objects.
+//Component Phase 1 console fork note: labels avoid keyboard-first PC wording for phone/controller companion use.
 //Component ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 export default function ControlsInput() {
@@ -81,19 +81,20 @@ export default function ControlsInput() {
               style={{color: model_creation_state  ? "#ffd5b3" : !object_selected  ? "rgba(191, 191, 191, 0.5)"  : camera_3d_direction === "north"  ? "#ffd5b3"  : "#bbbbbb"}}
             >
               {camera_3d_direction === "north"
-                ? "W (+Z)"
+                ? "Forward +Z"
                 : camera_3d_direction === "east"
-                ? "W (+X)"
+                ? "Forward +X"
                 : camera_3d_direction === "west"
-                ? "W (-X)"
+                ? "Forward -X"
                 : camera_3d_direction === "south"
-                ? "W (-Z)"
+                ? "Forward -Z"
                 : "unknown"}
             </div>
           )}
           <button
             onClick={() => ObjectTransformButton("move_front")}
             className="object_move_button object_move_front_button"
+            aria-label="Move selected piece forward"
           >
             <FontAwesomeIcon icon={faArrowUp} size="2xl" style={{ color: object_selected ? "#a8a8a8" : "rgba(120, 120, 120, 0.5)" }}/>
           </button>
@@ -104,19 +105,20 @@ export default function ControlsInput() {
               style={{color: model_creation_state  ? "#ffd5b3" : !object_selected  ? "rgba(191, 191, 191, 0.5)"  : camera_3d_direction === "west"  ? "#ffd5b3"  : "#bbbbbb"}}
             >
               {camera_3d_direction === "north"
-                ? "D (+X)"
+                ? "Right +X"
                 : camera_3d_direction === "east"
-                ? "D (-Z)"
+                ? "Right -Z"
                 : camera_3d_direction === "west"
-                ? "D (+Z)"
+                ? "Right +Z"
                 : camera_3d_direction === "south"
-                ? "D (-X)"
+                ? "Right -X"
                 : "unknown"}
             </div>
           )}
           <button
             onClick={() => ObjectTransformButton("move_right")}
             className="object_move_button object_move_right_button"
+            aria-label="Move selected piece right"
           >
             <FontAwesomeIcon icon={faArrowRight} size="2xl" style={{ color: object_selected ? "#a8a8a8" : "rgba(120, 120, 120, 0.5)" }}/>
           </button>
@@ -127,19 +129,20 @@ export default function ControlsInput() {
               style={{color: model_creation_state  ? "#ffd5b3" : !object_selected  ? "rgba(191, 191, 191, 0.5)"  : camera_3d_direction === "south"  ? "#ffd5b3"  : "#bbbbbb"}}
             >
               {camera_3d_direction === "north"
-                ? "S (-Z)"
+                ? "Back -Z"
                 : camera_3d_direction === "east"
-                ? "S (-X)"
+                ? "Back -X"
                 : camera_3d_direction === "west"
-                ? "S (+X)"
+                ? "Back +X"
                 : camera_3d_direction === "south"
-                ? "S (+Z)"
+                ? "Back +Z"
                 : "unknown"}
             </div>
           )}
           <button
             onClick={() => ObjectTransformButton("move_back")}
             className="object_move_button object_move_back_button"
+            aria-label="Move selected piece backward"
           >
             <FontAwesomeIcon icon={faArrowDown} size="2xl" style={{ color: object_selected ? "#a8a8a8" : "rgba(120, 120, 120, 0.5)" }}/>
           </button>
@@ -151,19 +154,20 @@ export default function ControlsInput() {
               
             >
               {camera_3d_direction === "north"
-                ? "A (-X)"
+                ? "Left -X"
                 : camera_3d_direction === "east"
-                ? "A (+Z)"
+                ? "Left +Z"
                 : camera_3d_direction === "west"
-                ? "A (-Z)"
+                ? "Left -Z"
                 : camera_3d_direction === "south"
-                ? "A (+X)"
+                ? "Left +X"
                 : "unknown"}
             </div>
           )}
           <button
             onClick={() => ObjectTransformButton("move_left")}
             className="object_move_button object_move_left_button"
+            aria-label="Move selected piece left"
           >
             <FontAwesomeIcon
               icon={faArrowLeft}
@@ -176,8 +180,9 @@ export default function ControlsInput() {
               onClick={() => ObjectTransformButton("move_up")}
               className="object_move_button object_move_up_button"
               style={{ color: object_selected ? "#a8a8a8" : "rgba(120, 120, 120, 0.5)" }}
+              aria-label="Raise selected piece"
             >
-              SPACE
+              Raise
               <FontAwesomeIcon icon={faCircleUp} size="3x" />
             </button>
           )}
@@ -186,9 +191,10 @@ export default function ControlsInput() {
               onClick={() => ObjectTransformButton("move_down")}
               className="object_move_button object_move_down_button"
               style={{ color: object_selected ? "#a8a8a8" : "rgba(120, 120, 120, 0.5)" }}
+              aria-label="Lower selected piece"
             >
               <FontAwesomeIcon icon={faCircleDown} size="3x" />
-              CTRL
+              Lower
             </button>
           )}
           <div className="object_rotation_container">
@@ -196,17 +202,18 @@ export default function ControlsInput() {
               onClick={() => ObjectTransformButton("rotate_left")}
               className="rotation_direction_button"
               style={{ color: object_selected || model_creation_state ? "#ffd5b3" : "rgba(120, 120, 120, 0.5)" }}
+              aria-label="Rotate placement left"
             >
               <FontAwesomeIcon icon={faArrowRotateRight} size="2xl" style={{ color: object_selected  ? "#a8a8a8" : "rgba(120, 120, 120, 0.5)" }}/>
-              Q
+              Left
             </button>
-            <div onClick={() => ChangeRotationDegree()} className="model_rotation_wheel">
+            <div onClick={() => ChangeRotationDegree()} className="model_rotation_wheel" role="button" aria-label="Change rotation step">
               <div className="model_rotation_button" style={{ color: object_selected || model_creation_state ? "#a8a8a8" : "rgba(191, 191, 191, 0.5)" }} >{next_object_rotation_degree}°</div>
               <button
                 className="rotation_change_button"
                 style={{ color: object_selected || model_creation_state ? "#ffd5b3" : "rgba(191, 191, 191, 0.5)" }}
               >
-                -{object_rotation_degree}°-
+                {object_rotation_degree}°
               </button>
               <div className="model_rotation_button" style={{ color: object_selected || model_creation_state ? "#a8a8a8" : "rgba(191, 191, 191, 0.5)" }}>{previous_object_rotation_degree}°</div>
             </div>
@@ -214,9 +221,10 @@ export default function ControlsInput() {
               onClick={() => ObjectTransformButton("rotate_right")}
               className="rotation_direction_button"
               style={{ color: object_selected || model_creation_state ? "#ffd5b3" : "rgba(120, 120, 120, 0.5)" }}
+              aria-label="Rotate placement right"
             >
               <FontAwesomeIcon icon={faArrowRotateLeft} size="2xl" style={{ color: object_selected ? "#a8a8a8" : "rgba(120, 120, 120, 0.5)" }}/>
-              E
+              Right
             </button>
           </div>
         </>
