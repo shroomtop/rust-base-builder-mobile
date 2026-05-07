@@ -5,7 +5,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   build: { chunkSizeWarningLimit: 5000 },
-  base: "/Rust-Base-Builder/",
+  base: "/rust-base-builder-mobile/",
   resolve: {
     alias: {
       // "@/assets": "/src/assets",
