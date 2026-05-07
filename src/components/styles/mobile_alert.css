@@ -1,37 +1,92 @@
 .mobile_alert_container {
-  width: 200%;
-  height: 200%;
+  position: fixed;
+  inset: 0;
   z-index: 999;
-  position: absolute;
-  top: 0vh;
-  left: 0vh;
-  background-color: rgba(15, 16, 26, 0.6);
-  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: max(16px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
+  background-color: rgba(15, 16, 26, 0.72);
+  backdrop-filter: blur(7px);
+  box-sizing: border-box;
+}
+
+.mobile_alert_card {
+  width: min(92vw, 520px);
+  max-height: 88vh;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 213, 179, 0.34);
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(23, 25, 36, 0.96), rgba(8, 10, 16, 0.96));
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.55);
+  color: #d8d8d8;
+  font-family: "Quicksand", sans-serif;
+  padding: 22px;
+  box-sizing: border-box;
+}
+
+.mobile_alert_eyebrow {
+  margin: 0 0 8px;
+  color: #ffd5b3;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.mobile_alert_title {
+  margin: 0 0 12px;
+  color: #f6f0e9;
+  font-size: clamp(22px, 6vw, 34px);
+  line-height: 1.08;
 }
 
 .mobile_alert_text {
-  margin-top: 25vh;
-  color: #bbbbbb;
-  font-size: 3.5vw;
+  margin: 0;
+  color: #c9c9c9;
+  font-size: clamp(14px, 3.6vw, 17px);
+  line-height: 1.5;
+  text-align: left;
+}
+
+.mobile_alert_list {
+  margin: 16px 0 20px;
+  padding-left: 20px;
+  color: #b8b8b8;
+  font-size: clamp(13px, 3.4vw, 16px);
+  line-height: 1.55;
+}
+
+.mobile_alert_confirm,
+.mobile_alert_reopen {
+  min-height: 44px;
+  border: 1px solid rgba(255, 213, 179, 0.5);
+  border-radius: 999px;
+  color: #0f1118;
+  background: #ffd5b3;
   font-family: "Quicksand", sans-serif;
-  font-weight: bold;
+  font-weight: 700;
   text-align: center;
-  width: 70vw;
-  margin-left: 15vw;
-  height: 6vh;
-  line-height: 1.4;
+  cursor: pointer;
 }
 
 .mobile_alert_confirm {
-  color: #bbbbbb;
-  font-size: 4vw;
-  background-color: transparent;
-  font-family: "Quicksand", sans-serif;
-  font-weight: 300;
-  text-align: center;
-  width: 40vw;
-  margin-left: 30vw;
-  height: 5vh;
-  border: none;
-  text-decoration: underline;
+  width: 100%;
+  font-size: 16px;
+}
+
+.mobile_alert_reopen {
+  position: fixed;
+  right: max(12px, env(safe-area-inset-right));
+  bottom: max(12px, env(safe-area-inset-bottom));
+  z-index: 70;
+  padding: 0 16px;
+  font-size: 13px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.42);
+}
+
+@media (min-width: 820px) {
+  .mobile_alert_reopen {
+    right: 18px;
+    bottom: 18px;
+  }
 }
